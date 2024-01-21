@@ -29,21 +29,30 @@ class Restaurante:
         for restaurante in cls.restaurantes:
             print(restaurante)
 
+    '''Property do status, onde considera TRUE = Está aberta e False = Está fechado'''
     @property
     def status(self):
         return 'Está aberto  ✅' if self._status else 'Está fechado ❌'
 
+    '''Método que altera o estado entre aberto(True) e fechado(False)'''
     def alterar_estado(self):
         self._status = not self._status
 
+    '''Método que atribui a avaliação de notas a um cliente, considerando notas de 0-5 e se for maior divimos o resultado por 2, para enxar na escala de notas'''
     def receber_avaliacao(self, cliente, nota):
-        avaliacao = Avaliacao(cliente, nota)
-        self._avaliacao.append(avaliacao)
+        if nota > 0 and nota <= 5 :
+            avaliacao = Avaliacao(cliente, nota)
+            self._avaliacao.append(avaliacao)
+        elif nota > 5 and nota <= 10:
+            nota = nota/2
+            avaliacao = Avaliacao(cliente, nota)
+            self._avaliacao.append(avaliacao)
 
+    '''Cria a média de avaliações, considerando as notas ja atribuidas ao restaurante'''
     @property
     def media_avaliacoes(self):
         if not self._avaliacao:
-            return 'Ainda não tivemos avaliação'
+            return '-'
         else:
             soma_das_notas = sum(avaliacao._nota for avaliacao in self._avaliacao)
             quantidade_de_notas = len(self._avaliacao)

@@ -6,9 +6,9 @@ def main():
     # Instanciando algumas classes (criando alguns objetos) 
     restaurante_praca = Restaurante('praça','Italiano')
     restaurante_praca.alterar_estado()
-    restaurante_praca.receber_avaliacao('Fulano', 10)
-    restaurante_praca.receber_avaliacao('Cigrano', 8)
-    restaurante_praca.receber_avaliacao('Lohana', 2)
+    restaurante_praca.receber_avaliacao('Fulano', 9)
+    restaurante_praca.receber_avaliacao('Cigrano',9)
+    restaurante_praca.receber_avaliacao('Lohana', 9)
 
     Restaurante.listar_restaurantes()
     
