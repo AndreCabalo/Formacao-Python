@@ -23,9 +23,6 @@ Intuito é deste repositório é documentar meu aprendizado e praticar git-githu
 |Tupla (imutáveis)      | tuple        | (1,2,3,4,5,6,7,8,9,10)|
 |Dictinonary (chave:valor) | dic      | {'Lohana':10, 'Jackeline':8, 'Beatriz':9}|
 
-
-  * The Zen of Python
-
 ## The Zen of Python
 
   - Poema que conseguimos atraves do comando no terminal Python:
