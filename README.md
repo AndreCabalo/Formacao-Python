@@ -198,3 +198,154 @@ Exemplo:
     def exibir_classe(self):
         return f'É um carro'    
 print(f'Método de classe que mostra que: - {Carro.exibir_classe()}')</code>
+
+
+# Curso 3 - Avance na Orientação a Objetos e consuma API
+
+## Herança
+
+Usamos o conceito de herança para otimizar e reaproveitar um código ja existente, ganhando assim, tempo de execução e compreensão.
+
+* Por exemplo, temos um item do cardapio, sendo que todo item do cardapio possui (nome, preço),
+
+* Temos também os pratos e bebidas, que também possui algunas caracteristicas iguais a item do cardapio, como (nome,preço) e mais algumas exclusivas.
+
+* Por tanto para usaremos herança devemos fazer o seguinte:
+
+    - Importar a classe que queremos herdar, dentro da classe filha
+
+    - Adicionar o nome da classe mãe dentro de um parenteses na frente do nome da classe
+    
+    - Chamar o super( ) e acessar o construtor da mãe
+
+* Observações:
+
+    - A classe filha, herda os atributos e métodos da classe mãe, e se quiser sobrepor estas, pode, mas veremos em breve isso em polimorfismo
+
+## Classe abstrata
+
+Classe abstrata é aquela que não instancia algo e obriga seus filhos a criarem o mesmo método com mesmo nome, obrigatório:
+
+* Importar ABC e abstractclassmethod
+
+* Lembrar que não queremos que a classe crie/instancia
+
+* Adicionar o decorator @abstractmethod a cima do método
+
+* Lembrar que a classe que tem este método abstract deve herdar de ABC, por tanto colocar o (ABC), apos o nome da classe
+
+* Todos os filhos desta classe, teram este método abstract obrigatóriamente, isso mesmo devemos criar o método abstract em todos os filhos/as
+
+## Polimorfismo
+
+Polimorfismo é quando um método da classe mãe, se comporta diferente nas classes filhas, inclusive podendo ser diferente em cada classe filha
+
+* Mas um coisa boa! Podemos implantar o mesmo método, porém com diferença em cada uma das classes filhas, isso se chama polimorfismo
+
+* Por exemplo, classe prato e classe bebida, herdam de itemCardapio, mas bebida tem 10% de desconto e prato tem 5% de desconto
+
+## Ambientes virtuais
+
+Resumidamente, é como se tivessemos um microcomputador dentro do nosso computador.
+
+Para que nosso sistema possa rodar de forma similar para todos os devs envolvidos, o ideal é que criemos um ambientes virtual com as mesma condições, como por exemplo:
+
+* Com mesma versão do Python
+* Mesma versão do Flask
+
+<i>Isso evita que o sistema quebre e aquele famoso jargão "Ahh mas no meu PC roda"</i>
+
+
+Por tanto, nosso primeiro passo é :
+
+* Aprender a preparar este ambiente virtual
+
+* Aprender a puxar o ambiente virtual de outra pessoa
+Para criar esta VENV, devemos:
+
+1 - No VsCode em uma pasta nova, no terminal, usamos o comando:
+
+    <code>python -m venv nome-que-queremos-para-venv</code>
+
+Onde:
+
+| Comando                     | Descrição                              |
+|-----------------------------|----------------------------------------|
+|python                       |  Para indicar um comando python        |
+|-m                           |  Para indicar a criação de um modulo   |
+|venv                         |  Para indicar a criação de uma venv    |
+|nome-que-queremos-para-venv  |  É o nome escolhido para a nossa venv  |
+
+Ao fazer isso, o python cria automaticamente um ambiente virtual
+
+* A boa prática, recomenda usarmos o nome da venv de venv ou env, especificamente
+
+Ativando o ambiente virtual:
+
+no Windows:
+
+<code>venv\Scripts\activate.bat</code>
+
+## Requisições JSON e arquivos
+
+ Requisição
+
+Inserindo conteudo de restaurantes via JSON
+
+Abrimos o ambiente virtual como ja haviamos feito com <code>venv\Scripts\activate.bat</code>
+
+Em seguida criamos um arquivo "app.py"
+
+e nele adicionamos o seguinte:
+
+<code>
+import requests
+
+
+url = 'https://guilhermeonrails.github.io/api-restaurantes/restaurantes.json'
+
+
+response = requests.get(url)
+
+
+print(response)</code>
+
+... este conteúdo pode ser melhor explorado dentro do arquivo na pasta Conteúdo deste repositório
+
+## FastAPI
+
+É um framework que facilita a criação de end-points que podem guardar métodos e conteúdo.
+
+Antes de utiliza-lo devemos instalar o FastAPI no pc ou ambiente virtual, da seguinte maneira:
+
+<code>pip install fastapi</code>
+
+e em seguida:
+
+<code>pip install uvicorn</code>
+
+Apos isso, vamos criar um arquivo "main.py" apenas para diferenciar do "app.py"
+
+e iremos inserir nele:
+
+<code>from fastapi import FastAPI
+app = FastAPI()
+
+@app.get('/api/hello')
+def hello_world():
+    return {'Hello':'World'}</code>
+
+Apos inserir os dados a cima no arquivo "main" devemos estar dentro do diretório do arquivo main (no terminal, se preciso navegue até la com o comando <code>CD nomePasta</code>)
+
+Em seguida digite no terminal :<code>uvicorn main:app --reload </code>
+
+Após isso o terminal mostrará inumeras informações, inclusive o end-point (o endereço local-host )
+
+Ao entrar no link, vc verá que surgiu um erro e que nada foi encontrado, para sanar isto, basta adicionaro end-point criado no final do endereço, por exemplo:
+
+<code>/api/hello</code>
+
+Exatamente como indicamos no arquivo "main.py"
+
+
+
